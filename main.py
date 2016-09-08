@@ -1,5 +1,5 @@
 from flask import Flask
-from get_wind_data import *
+from get_wind_data import get_wind
 
 app = Flask(__name__)
 
