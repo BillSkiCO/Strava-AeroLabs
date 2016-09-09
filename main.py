@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from get_wind_data import get_wind
 
 app = Flask(__name__)
@@ -6,7 +6,8 @@ app = Flask(__name__)
 #routing tying a URL to a python function
 @app.route('/')
 def index():
-    return get_wind('Cicero', 'NY')
+    return render_template('index.html')
+    #return get_wind('Cicero', 'NY')
 
 # Check to make sure we only run the webserver when this file is run directly
 if __name__ == "__main__":
