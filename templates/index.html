@@ -3,18 +3,23 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Strava AeroLabs</title>
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename=css/stylesheet.css)}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename=favicon.ico}}">
 </head>
 
     <body class = "index">
         <div class = "index-body">
         <h1>Strava AeroLabs</h1>
-        <p>Please connect with Strava to Start</p>
+        <!--<p>Please connect with Strava to Start</p>-->
 
     <!-- <a href=""> -->
-    <img src="https://strava.github.io/api/images/LogInWithStrava.png" alt="Strava Login">
+    <!--<img src="https://strava.github.io/api/images/LogInWithStrava.png" alt="Strava Login">-->
     <!-- </a> -->
-
+            <form action="segment_form_action.py" method="get">
+                Enter Segment ID:<br>
+                <input type="text" name="segment_id"><br>
+                <input type="submit" value="Submit">
+            </form>
         </div>
     </body>
 </html>

@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from get_wind_data import get_wind
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="X:/AeroLabs/Strava-AeroLabs/static")
 
 #routing tying a URL to a python function
 @app.route('/')
