@@ -16,9 +16,9 @@
 # "effort_count":91193,"athlete_count":5754,"star_count":1079,
 # "athlete_segment_stats":{"pr_elapsed_time":null,"pr_date":null,"effort_count":0}}
 
-
 import urllib2
 import json
+
 
 def get_strava_data(segment_id, public_access_token):
     # Query to get strava segment data
@@ -31,5 +31,10 @@ def get_strava_data(segment_id, public_access_token):
     dict_json = json.loads(json_string)
 
     response_object.close()
+
+    seg_start_lat = dict_json['start_latitude']
+    seg_start_long = dict_json['start_longitude']
+    seg_end_lat = dict_json['end_latitude']
+    seg_end_long = dict_json['end_longitude']
 
     return dict_json

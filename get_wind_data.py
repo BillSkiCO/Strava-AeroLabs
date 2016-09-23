@@ -11,10 +11,10 @@ import json
 
 from api_key_data import WU_API_KEY
 
-def get_wind(user_city, user_state):
+def get_wind(user_lat, user_long):
     # Query construction using secret API Key
     url = 'http://api.wunderground.com/api/' + WU_API_KEY + '/geolookup/conditions/q/' \
-          + user_state + '/' + user_city + '.json'
+          + user_lat + ',' + user_long + '.json'
 
     response_object = urllib2.urlopen(url)
     json_string = response_object.read()
