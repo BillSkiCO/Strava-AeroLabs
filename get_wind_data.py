@@ -20,9 +20,10 @@ def get_wind(user_lat, user_long):
     json_string = response_object.read()
     dict_json = json.loads(json_string)
 
-    location = dict_json['location']['city']
-    wind_f = dict_json['current_observation']['wind_mph']
+    wind_f = float(dict_json['current_observation']['wind_mph'])
+    wind_dir = float(dict_json['current_observation']['wind_degrees'])
+    wind_dict = {'wind mph': wind_f, 'wind direction': wind_dir}
 
     response_object.close()
 
-    return "Current wind is: %s mph in %s, %s" % (wind_f, location, user_state)
+    return wind_dict
