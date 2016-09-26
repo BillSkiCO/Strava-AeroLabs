@@ -24,17 +24,12 @@ def get_strava_data(segment_id, public_access_token):
     # Query to get strava segment data
     # Input: Segment ID, Strava App Public Access Token
     # Output: Dictionary of Web Response for Segment Query. See top for example web response
-    url = 'https://www.strava.com/api/v3/segments/'+ segment_id + '/?access_token=' + public_access_token
+    url = 'https://www.strava.com/api/v3/segments/'+ str(segment_id) + '/?access_token=' + str(public_access_token)
 
     response_object = urllib2.urlopen(url)
     json_string = response_object.read()
     dict_json = json.loads(json_string)
 
     response_object.close()
-
-    seg_start_lat = dict_json['start_latitude']
-    seg_start_long = dict_json['start_longitude']
-    seg_end_lat = dict_json['end_latitude']
-    seg_end_long = dict_json['end_longitude']
 
     return dict_json

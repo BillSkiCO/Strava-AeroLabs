@@ -6,7 +6,7 @@
 # Calculations for wind direction, bearing, wind angle, wind assistance, and crosswind
 #
 
-from math import cos, sin, atan2
+from math import cos, sin, atan2, degrees
 
 
 def wind_direction(direction):
@@ -20,12 +20,16 @@ def wind_direction(direction):
 def bearing(start_lat, start_lng, end_lat, end_lng):
     # Input: (all floats)Starting latitude, starting longitude, ending latitude, ending longitude
     # Output: (float)Bearing direction in degrees, from start point to end point
-    delta_lng = abs(start_lng - end_lng)
-    x = cos(end_lat) * sin(delta_lng)
-    y = cos(start_lat) * sin(end_lat) - sin(start_lat) * cos(end_lat) * cos(delta_lng)
-    bearing_direction = atan2(x, y)
+    delta_lng = (end_lng - start_lng)
+    y = cos(end_lat) * sin(delta_lng)
+    x = cos(start_lat) * sin(end_lat) - sin(start_lat) * cos(end_lat) * cos(delta_lng)
 
-    return bearing_direction
+    bearing_rad = atan2(y, x)
+    bearing_deg = degrees(bearing_rad)
+    bearing_deg = (bearing_deg + 360) % 360
+    bearing_deg = 360 - bearing_deg
+
+    return bearing_deg
 
 
 def wind_angle(travel_direction, wind_degrees):
