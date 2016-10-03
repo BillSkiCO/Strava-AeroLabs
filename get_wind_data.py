@@ -22,6 +22,9 @@ def get_wind(user_lat, user_long):
 
     wind_f = float(dict_json['current_observation']['wind_mph'])
     wind_dir = float(dict_json['current_observation']['wind_degrees'])
+
+    print dict_json
+
     wind_dict = {'wind mph': wind_f, 'wind direction': wind_dir}
 
     response_object.close()

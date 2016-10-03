@@ -15,13 +15,16 @@
     <!-- <a href=""> -->
     <!--<img src="https://strava.github.io/api/images/LogInWithStrava.png" alt="Strava Login">-->
     <!-- </a> -->
-            {% block content %}
             <form action="/windstat" method="POST">
                 Enter Segment ID:<br>
                 <input type="text" name="segment_id"><br>
                 <input type="submit" value="Submit">
             </form>
-            {% endblock %}
         </div>
+    {%  block body %}
+
+        {{ error }}
+
+    {% endblock %}
     </body>
 </html>

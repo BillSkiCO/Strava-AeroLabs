@@ -6,7 +6,7 @@
 # Calculations for wind direction, bearing, wind angle, wind assistance, and crosswind
 #
 
-from math import cos, sin, atan2, degrees
+from math import cos, sin, atan2, degrees, radians
 
 
 def wind_direction(direction):
@@ -41,11 +41,13 @@ def wind_angle(travel_direction, wind_degrees):
 def wind_assist(wind_speed, wind_angle):
     # Input: Wind Speed in m/s or mph, Angle of wind from direction of travel
     # Output: True wind assist in m/s or mph. Positive = Tailwind, Negative = Headwind, 0 = True Crosswind
-    return wind_speed * cos(wind_angle)
+    return wind_speed * cos(radians(wind_angle))
 
 
 def crosswind(wind_speed, wind_angle):
     # Input: Wind Speed in m/s or mph, Angle of wind from direction of travel
     # Output: Crosswind value
-    return wind_speed * sin(wind_angle)
+    print wind_speed
+    print "Xwind calculation %d" , (sin(radians(wind_angle)))
+    return wind_speed * sin(radians(wind_angle))
 
