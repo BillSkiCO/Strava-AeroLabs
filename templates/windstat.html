@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>windstat page</title>
 </head>
-<body>
+<body onload='initialize()'>
 {% block content %}
 wind_dict<br>
 {{wind_dict}}<br><br>
@@ -18,6 +18,13 @@ calculated_xwind<br>
 google_poly_line<br>
 {{google_poly_line}}<br><br>
 
+<img src= "{{google_img_url}}"><br>
+
+wind<br>
+
+
+<img src="{{url_for('static', filename='images/windarrow.png')}}">
+
 strava_data<br>
 {{strava_data}}<br><br>
 
@@ -30,8 +37,7 @@ angle_diff<br>
 course_bearing<br>
 {{course_bearing}}<br><br>
 
-
-
 {% endblock %}
+
 </body>
 </html>

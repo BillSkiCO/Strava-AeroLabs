@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, flash, url_for, redirect
+from flask import Flask, render_template, request, flash, url_for, redirect, jsonify
 from get_wind_data import get_wind
 from get_strava_segment import get_strava_data
 from api_key_data import MY_STRAVA_PUBLIC_ACCESS_TOKEN
 from calculate import *
+import polyline
 
 app = Flask(__name__)
 
@@ -11,7 +12,7 @@ app = Flask(__name__)
 # Page not found
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html', error=e)
+    return render_template('405.html', error=e)
 
 # Method not found
 @app.errorhandler(405)
@@ -32,10 +33,10 @@ def index():
 @app.route('/windstat', methods=['POST'])
 def windstat():
             # Receive data from form onb windstat. Getting users segment ID
-            input_segment_id = request.form['segment_id']
+            input_segment_url = request.form['segment_url']
 
             # Get strava data from user input in form of JSON. See get_strava_data for example JSON response.
-            strava_data = get_strava_data(input_segment_id, MY_STRAVA_PUBLIC_ACCESS_TOKEN)
+            strava_data = get_strava_data(input_segment_url, MY_STRAVA_PUBLIC_ACCESS_TOKEN)
 
             # Start / End latitude longitude 'import' && cast as float
             start_lat = float(strava_data['start_latitude'])
@@ -43,7 +44,15 @@ def windstat():
             end_lat = float(strava_data['end_latitude'])
             end_lng = float(strava_data['end_longitude'])
 
+            center_lat = start_lat - ((start_lat - end_lat)/2)
+            center_lng = start_lng - ((start_lng - end_lng)/2)
+
             google_poly_line = strava_data['map']['polyline']
+            dict_lat_lng = polyline.decode(strava_data['map']['polyline'])
+            google_img_url = \
+                'http://maps.googleapis.com/maps/api/staticmap?sensor=false&size=300x300&path=weight:3|color:red|enc:'\
+                + google_poly_line
+            print google_img_url
 
             # get wind data for start point. // wind_dict = {'wind mph': wind_f, 'wind direction': wind_dir}
             wind_dict = get_wind(start_lat, start_lng)
@@ -61,8 +70,9 @@ def windstat():
     # pass in data to be displayed on /windstat/result ('/windstat/result', data1, data2,....dataN)
             return render_template('/windstat.html', wind_dict= wind_dict, calculated_wind_assist= calculated_wind_assist,
                                    calculated_xwind = calculated_xwind, google_poly_line = google_poly_line,
-                                   strava_data = strava_data, input_segment_id = input_segment_id, angle_diff = angle_diff,
-                                   course_bearing = course_bearing)
+                                   strava_data = strava_data, input_segment_id = input_segment_url, angle_diff = angle_diff,
+                                   course_bearing = course_bearing, center_lat = center_lat, center_lng = center_lng,
+                                   dict_lat_lng = dict_lat_lng, google_img_url = google_img_url, wind_dir_deg = wind_dict['wind direction'])
 
 
 # Check to make sure we only run the webserver when this file is run directly

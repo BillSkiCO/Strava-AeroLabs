@@ -20,11 +20,16 @@ import urllib2
 import json
 
 
-def get_strava_data(segment_id, public_access_token):
+def get_strava_data(segment_url, public_access_token):
     # Query to get strava segment data
-    # Input: Segment ID, Strava App Public Access Token
+    # Input: Strava URL containing segment ID at the end example 'https://www.strava.com/segments/613'
     # Output: Dictionary of Web Response for Segment Query. See top for example web response
-    url = 'https://www.strava.com/api/v3/segments/'+ str(segment_id) + '/?access_token=' + str(public_access_token)
+
+    # Split incoming url into segments
+    seg_id = segment_url.split('/')
+
+    # Feed segment id parsed from url into strava API
+    url = 'https://www.strava.com/api/v3/segments/'+ str(seg_id[-1]) + '/?access_token=' + str(public_access_token)
 
     response_object = urllib2.urlopen(url)
     json_string = response_object.read()
