@@ -17,10 +17,23 @@
     <!-- </a> -->
             <form action="/windstat" method="POST">
                 Enter Segment Url:<br>
-                <input type="text" name="segment_url" placeholder="Example: https://www.strava.com/segments/638399"><br>
-                <input type="submit" value="Submit">
+                <input type="text" class="textbox" name="segment_url" placeholder="https://www.strava.com/segments/638399"><br><br>
+                <input type="submit" value="Get Aero Data!">
             </form>
         </div>
+
+        <style type="text/css">
+            .index-body{
+                text-align: center;
+            }
+
+            .textbox{
+                width: 265px;
+            }
+
+
+        </style>
+
     {%  block body %}
 
         {{ error }}

@@ -2,12 +2,12 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>windstat page</title>
+    <title>Segment Wind Data</title>
 </head>
-<body onload='initialize()'>
+<body>
 {% block content %}
-wind_dict<br>
-{{wind_dict}}<br><br>
+
+{{wind_dict}}
 
 calculated_wind_assist<br>
 {{calculated_wind_assist}}<br><br>
@@ -22,8 +22,27 @@ google_poly_line<br>
 
 wind<br>
 
+<img class ="wind_arrow" src="{{url_for('static', filename='images/windarrow.png')}}" alt="windarrow.png" height="200"
+        width="200">
+<img class ="course_arrow" src="{{url_for('static', filename='images/windarrow.png')}}" alt="windarrow.png" height="200"
+        width="200">
+<style type = 'text/css'>
 
-<img src="{{url_for('static', filename='images/windarrow.png')}}">
+    .wind_arrow{
+
+        -ms-transform: rotate({{wind_dir_deg - 45 + 180}}deg); /* IE 9 */
+        -webkit-transform: rotate({{wind_dir_deg - 45 + 180}}deg); /* Chrome, Safari, Opera */
+        transform: rotate({{wind_dir_deg - 45 + 180}}deg);
+    }
+
+    .course_arrow{
+
+        -ms-transform: rotate({{course_bearing - 45}}deg); /* IE 9 */
+        -webkit-transform: rotate({{course_bearing - 45}}deg); /* Chrome, Safari, Opera */
+        transform: rotate({{course_bearing - 45}}deg);
+
+    }
+</style>
 
 strava_data<br>
 {{strava_data}}<br><br>
@@ -40,4 +59,38 @@ course_bearing<br>
 {% endblock %}
 
 </body>
+
+<h1 style="text-align: center;">{{strava_data["name"]}}</h1>
+<h2 style="text-align: center;">Time: <span id="time"><script src="{{url_for('static', filename='js/time.js')}}"></script></span></h2>
+<h2 style="text-align: center;">Calculated {{wind_class}}</h2>
+<h3 style="text-align: center;">{{"{0:0.2f}".format(calculated_wind_assist)}} mph</h3>
+<h2 style="text-align: center;">Calculated Crosswind</h2>
+<h3 style="text-align: center;">{{"{0:0.2f}".format(calculated_wind_assist)}} mph</h3>
+<p>&nbsp;</p>
+<p style="text-align: center;"><img src="{{google_img_url}}" alt="Strava Google Map" width="300" height="300" /></p>
+<table style="height: 44px; margin-left: auto; margin-right: auto;" width="208">
+<tbody>
+<tr>
+<td style="text-align: center;">
+<h3>Course Bearing</h3>
+<h4>{{course_bearing}}°</h4>
+</td>
+<td style="text-align: center;">
+<h3>Wind</h3>
+<h4>{{wind_dir_deg}}° at {{wind_speed_mph}} mph</h4>
+</td>
+</tr>
+<tr>
+<td><img src="{{url_for('static', filename='images/windarrow.png')}}" alt="windarrow.png"
+         class= course_arrow width="250" height="250"  /></td>
+<td><img src="{{url_for('static', filename='images/windarrow.png')}}" alt="windarrow.png"
+         class= wind_arrow width="250" height="250" /></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;">&nbsp;</p>
+
+
 </html>

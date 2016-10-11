@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, flash, url_for, redirect, jsonify
+import datetime
 from get_wind_data import get_wind
 from get_strava_segment import get_strava_data
 from api_key_data import MY_STRAVA_PUBLIC_ACCESS_TOKEN
@@ -56,6 +57,8 @@ def windstat():
 
             # get wind data for start point. // wind_dict = {'wind mph': wind_f, 'wind direction': wind_dir}
             wind_dict = get_wind(start_lat, start_lng)
+            wind_speed_mph = wind_dict['wind mph']
+            wind_dir = float(wind_dict['wind direction']) # Account for arrow in /static/images @ 45 deg
 
             # get angle difference
             course_bearing = bearing(start_lat, start_lng, end_lat, end_lng)
@@ -64,6 +67,11 @@ def windstat():
             # calculate headwind / tailwind component. Negative = headwind
             calculated_wind_assist = wind_assist(float(wind_dict['wind mph']), angle_diff)
 
+            if (calculated_wind_assist > 0):
+                    wind_class = "Tailwind"
+            else:
+                    wind_class = "Headwind"
+
             # calculate cross wind component (figure out what negative / positive mean)
             calculated_xwind = crosswind(float(wind_dict['wind mph']), angle_diff)
 
@@ -71,8 +79,9 @@ def windstat():
             return render_template('/windstat.html', wind_dict= wind_dict, calculated_wind_assist= calculated_wind_assist,
                                    calculated_xwind = calculated_xwind, google_poly_line = google_poly_line,
                                    strava_data = strava_data, input_segment_id = input_segment_url, angle_diff = angle_diff,
-                                   course_bearing = course_bearing, center_lat = center_lat, center_lng = center_lng,
-                                   dict_lat_lng = dict_lat_lng, google_img_url = google_img_url, wind_dir_deg = wind_dict['wind direction'])
+                                   course_bearing = int(course_bearing), center_lat = center_lat, center_lng = center_lng,
+                                   dict_lat_lng = dict_lat_lng, google_img_url = google_img_url,
+                                   wind_dir_deg = int(wind_dir), wind_class = wind_class, wind_speed_mph = wind_speed_mph)
 
 
 # Check to make sure we only run the webserver when this file is run directly
