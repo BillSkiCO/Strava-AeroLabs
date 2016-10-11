@@ -67,21 +67,37 @@ def windstat():
             # calculate headwind / tailwind component. Negative = headwind
             calculated_wind_assist = wind_assist(float(wind_dict['wind mph']), angle_diff)
 
-            if (calculated_wind_assist > 0):
+            if calculated_wind_assist > 0:
                     wind_class = "Tailwind"
             else:
                     wind_class = "Headwind"
+
+            # enumerate intensity of headwind / tailwind
+
+            if calculated_wind_assist > 5.0:
+                # Strong Tailwind
+                assist_enum = 1
+            elif 5.0 > calculated_wind_assist >= 0:
+                # Moderate Tailwind
+                assist_enum = 2
+            elif 0 > calculated_wind_assist > -5.0:
+                # Moderate Headwind
+                assist_enum = 3
+            else:
+                # Strong Headwind
+                assist_enum = 4
 
             # calculate cross wind component (figure out what negative / positive mean)
             calculated_xwind = crosswind(float(wind_dict['wind mph']), angle_diff)
 
     # pass in data to be displayed on /windstat/result ('/windstat/result', data1, data2,....dataN)
-            return render_template('/windstat.html', wind_dict= wind_dict, calculated_wind_assist= calculated_wind_assist,
-                                   calculated_xwind = calculated_xwind, google_poly_line = google_poly_line,
+            return render_template('/windstat.html', wind_dict= wind_dict, calculated_wind_assist= abs(calculated_wind_assist),
+                                   calculated_xwind = abs(calculated_xwind), google_poly_line = google_poly_line,
                                    strava_data = strava_data, input_segment_id = input_segment_url, angle_diff = angle_diff,
                                    course_bearing = int(course_bearing), center_lat = center_lat, center_lng = center_lng,
                                    dict_lat_lng = dict_lat_lng, google_img_url = google_img_url,
-                                   wind_dir_deg = int(wind_dir), wind_class = wind_class, wind_speed_mph = wind_speed_mph)
+                                   wind_dir_deg = int(wind_dir), wind_class = wind_class, wind_speed_mph = wind_speed_mph,
+                                   assist_enum = assist_enum)
 
 
 # Check to make sure we only run the webserver when this file is run directly
