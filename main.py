@@ -69,8 +69,10 @@ def windstat():
 
             if calculated_wind_assist > 0:
                     wind_class = "Tailwind"
-            else:
+            elif calculated_wind_assist:
                     wind_class = "Headwind"
+            else:
+                    wind_class = "No Wind Assist Detected"
 
             # enumerate intensity of headwind / tailwind
 
