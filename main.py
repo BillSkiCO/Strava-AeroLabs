@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, flash, url_for, redirect, jso
 import datetime
 from get_wind_data import get_wind
 from get_strava_segment import get_strava_data
-from api_key_data import MY_STRAVA_PUBLIC_ACCESS_TOKEN
+from api_key_data import MY_STRAVA_PUBLIC_ACCESS_TOKEN, GOOGLE_API_KEY
 from calculate import *
 import polyline
 
@@ -51,8 +51,8 @@ def windstat():
             google_poly_line = strava_data['map']['polyline']
             dict_lat_lng = polyline.decode(strava_data['map']['polyline'])
             google_img_url = \
-                'http://maps.googleapis.com/maps/api/staticmap?sensor=false&size=300x300&path=weight:3|color:red|enc:'\
-                + google_poly_line
+                'http://maps.googleapis.com/maps/api/staticmap?sensor=false&key='+ GOOGLE_API_KEY + \
+                '&size=300x300&path=weight:3|color:red|enc:'+ google_poly_line
             print google_img_url
 
             # get wind data for start point. // wind_dict = {'wind mph': wind_f, 'wind direction': wind_dir}
