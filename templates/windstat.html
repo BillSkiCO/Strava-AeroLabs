@@ -21,7 +21,6 @@
 </style>
 
 <h1 style="text-align: center;">{{strava_data["name"]}}</h1>
-<h2 style="text-align: center;">Time: <span id="time"><script src="{{url_for('static', filename='js/time.js')}}"></script></span></h2>
     {% if assist_enum == 1: %}
     <div id ="strong_tailwind_circle"></div>
     {% elif assist_enum == 2: %}
@@ -56,9 +55,7 @@
 </tr>
 </tbody>
 </table>
-<p>&nbsp;</p>
-<p style="text-align: center;">&nbsp;</p>
-<p style="text-align: center;">&nbsp;</p>
+<h2 style="text-align: center;">Current time: <span id="time"><script src="{{url_for('static', filename='js/time.js')}}"></script></span></h2>
 
 {% endblock %}
 </html>

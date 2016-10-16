@@ -104,4 +104,4 @@ def windstat():
 
 # Check to make sure we only run the webserver when this file is run directly
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)

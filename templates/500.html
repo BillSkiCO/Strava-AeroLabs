@@ -5,9 +5,20 @@
     <title>500 Internal Server Error</title>
 </head>
 <body>
-    500 Error
+
+<h1 style="text-align: center">That Strava URL doesn't exist!</h1>
+<div style="text-align: center"><a href="https://www.strava.com/segments/search">
+    <button type="button" class="404button">Segment Search</button></a></div>
+<p style="text-align: center">
     {% block body%}
 {{error}}
     {% endblock %}
+    <style type="text/css">
+        .404button{
+            margin: auto;
+            display: block;
+    }
+</style>
+</p>
 </body>
 </html>
