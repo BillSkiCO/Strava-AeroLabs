@@ -53,7 +53,6 @@ def windstat():
             google_img_url = \
                 'http://maps.googleapis.com/maps/api/staticmap?sensor=false&key='+ GOOGLE_API_KEY + \
                 '&size=300x300&path=weight:3|color:red|enc:'+ google_poly_line
-            print google_img_url
 
             # get wind data for start point. // wind_dict = {'wind mph': wind_f, 'wind direction': wind_dir}
             wind_dict = get_wind(start_lat, start_lng)

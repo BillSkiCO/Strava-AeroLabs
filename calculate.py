@@ -46,7 +46,5 @@ def wind_assist(wind_speed, wind_angle):
 def crosswind(wind_speed, wind_angle):
     # Input: Wind Speed in m/s or mph, Angle of wind from direction of travel
     # Output: Crosswind value
-    print wind_speed
-    print "Xwind calculation %d" , (sin(radians(wind_angle)))
     return wind_speed * sin(radians(wind_angle))
 
