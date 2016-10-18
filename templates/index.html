@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head lang="en">
     <meta charset="UTF-8">
     <title>Strava AeroLabs</title>
@@ -7,20 +7,20 @@
     <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}">
 </head>
 
-    <body class = "index">
         <div class = "index-body">
         <h1>Strava AeroLabs</h1>
-        <!--<p>Please connect with Strava to Start</p>-->
-
-    <!-- <a href=""> -->
-    <!--<img src="https://strava.github.io/api/images/LogInWithStrava.png" alt="Strava Login">-->
-    <!-- </a> -->
             <form action="/windstat" method="POST">
                 Enter Segment Url:<br>
-                <input type="text" class="textbox" name="segment_url" placeholder="https://www.strava.com/segments/638399" required><br><br>
-                <input type="submit" value="Get Aero Data!">
+                <p><input type="text" class="textbox" name="segment_url" placeholder="https://www.strava.com/segments/638399" required><br></p>
+                <p><input type="submit" value="Get Aero Data!"></p>
             </form>
         </div>
+    <body class = "seg_search">
+        <div style="text-align: center"><p><br>To search for a segment click here!<br></p></div>
+        <div style="text-align: center"><a href="https://www.strava.com/segments/search" target="_blank">
+    <button type="button" class="404button">Segment Search</button></a></div>
+    </p>
+    </body>
 
         <style type="text/css">
             .index-body{
@@ -28,7 +28,11 @@
             }
 
             .textbox{
-                width: 265px;
+                width: 20%;
+            }
+            input, input[placeholder]
+            {
+                text-align: center;
             }
 
 
@@ -39,5 +43,4 @@
         {{ error }}
 
     {% endblock %}
-    </body>
 </html>
