@@ -8,7 +8,8 @@
 </head>
 
         <div class = "index-body">
-        <h1>Strava AeroLabs</h1>
+        <img src="{{url_for('static', filename='images/Logo.png')}}" alt="STRAVA AEROLABS"
+             style="width:15%; text-align: center; padding-top: 40px;"><br><br>
             <form action="/windstat" method="POST">
                 Enter Segment Url:<br>
                 <p><input type="text" class="textbox" name="segment_url" placeholder="--------" required><br></p>
