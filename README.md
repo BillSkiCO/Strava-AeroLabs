@@ -5,7 +5,6 @@ A tool for [Strava](https://www.strava.com/) users to calculate relative headwin
 
 ![Example](https://github.com/BillSkiCO/Strava-AeroLabs/blob/master/static/images/Example1.png)
 
-
 ## Built With
 
 * [Flask](http://flask.pocoo.org/) - The web framework used
@@ -14,6 +13,11 @@ A tool for [Strava](https://www.strava.com/) users to calculate relative headwin
 * [Dreamhost](https://www.dreamhost.com/) - DNS Hosting
 * [Weather Underground API](https://api.wunderground.com/weather/api/) - Live local weather
 * [Google Maps API](https://developers.google.com/maps/) - Segment mapping
+
+
+## Version
+
+* Version 1.0 -  We are live! Input strava segment into search bar to get detailed headwind, tailwind, and crosswind information
 
 ## Authors
 
