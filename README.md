@@ -1,8 +1,8 @@
-![Strava AeroLabs](https://github.com/BillSkiCO/Strava-AeroLabs/blob/master/static/images/Logo.png)
+<p align="center">![Strava AeroLabs](https://github.com/BillSkiCO/Strava-AeroLabs/blob/master/static/images/Logo.png)</p>
 
 A tool for [Strava](https://www.strava.com/) users to calculate relative headwind, tailwind, and crosswind values for a particular strava segment based on current wind conditions.
 
-![Example](https://github.com/BillSkiCO/Strava-AeroLabs/blob/master/static/images/Example1.png)
+<p align="center">![Example](https://github.com/BillSkiCO/Strava-AeroLabs/blob/master/static/images/Example1.png)</p>
 
 ## Built With
 
