@@ -9,7 +9,11 @@ A tool for [Strava](https://www.strava.com/) users to calculate relative headwin
 ## Built With
 
 * [Flask](http://flask.pocoo.org/) - The web framework used
-* [Bootstrap] (http://getbootstrap.com/) - HTML, CSS, and JS framework
+* [Bootstrap](http://getbootstrap.com/) - HTML, CSS, and JS framework
+* [Amazon AWS](https://aws.amazon.com/) - Elastic Beanstalk, VPN, EC2, S3
+* [Dreamhost](https://www.dreamhost.com/) - DNS Hosting
+* [Weather Underground API](https://api.wunderground.com/weather/api/) - Live local weather
+* [Google Maps API](https://developers.google.com/maps/) - Segment mapping
 
 ## Authors
 
