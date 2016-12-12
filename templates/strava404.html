@@ -5,6 +5,14 @@
     <title>Segment not found</title>
 </head>
 <body>
-Strava segment not found
+
+<h1 style="text-align: center">That Strava URL doesn't exist!</h1>
+<div style="text-align: center"><a href="https://www.strava.com/segments/search">
+    <button type="button" class="404button">Segment Search</button></a></div>
+<p style="text-align: center">
+    {% block body%}
+{{error}}
+    {% endblock %}
+</p>
 </body>
 </html>
