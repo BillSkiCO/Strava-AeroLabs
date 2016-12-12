@@ -38,4 +38,6 @@ Thumbs.db
 
 # Project Specific Files #
 ##########################
-api_key_data.py
+config.py
+notes.txt
+dbinfo.txt

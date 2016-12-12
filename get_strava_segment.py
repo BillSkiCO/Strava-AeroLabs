@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 """
     get_strava_segment.py: API call to strava to get segment details
@@ -20,37 +21,40 @@
     "athlete_segment_stats":{"pr_elapsed_time":null,"pr_date":null,"effort_count":0}}
 
     Initial Implementation: 09/06/2016 [William Golembieski]
-    Last Modification: 10/17/2016 [William Golembieski]
+    Last Modification: 12/11/2016 [William Golembieski]
 
 """
 
-import urllib2
-import json
+from flask import render_template
+from urllib2 import urlopen, HTTPError
+from json import loads
 
 __author__ = "William Golembieski"
-__copyright__ = "Copyright 2016, Strava AeroLabs"
-__credits__ = ["William Golembieski"]
-__license__ = "GNU General Public License v3.0"
-__version__ = "1.0.0"
-__maintainer__ = "William Golembieski"
 __email__ = "BillGolembieski@projectu23.com"
-__status__ = "Production"
 
 
 def get_strava_data(segment_url, public_access_token):
-    # Input: Strava URL containing segment ID at the end example 'https://www.strava.com/segments/613',
-    #        A public access token for the app
-    # Output: Dictionary of Web Response for Segment Query. See top for example web response
+    """
+    :param segment_url:  Strava URL containing segment ID at the end example 'https://www.strava.com/segments/613' \
+                         will still work as long as last number is segment ID
+    :param public_access_token: A public access token for the app
+    :return: Dictionary of Web Response for Segment Query. See top for example web response
+    """
 
-    # Split incoming url into segments
     seg_id = segment_url.split('/')
-
-    # Feed segment id (613 in example above) parsed from url into strava API
     url = 'https://www.strava.com/api/v3/segments/' + str(seg_id[-1]) + '/?access_token=' + str(public_access_token)
+    try:
+        # Call to urllib2.urlopen()
+        response_object = urlopen(url)
 
-    response_object = urllib2.urlopen(url)
+    # Call to urllib2.HTTPError() in the case that strava url does not exist
+    except HTTPError as e:
+        render_template('/strava404.html/', error=e)
+
     json_string = response_object.read()
-    dict_json = json.loads(json_string)
+
+    # Call to json.loads
+    dict_json = loads(json_string)
 
     response_object.close()
 
