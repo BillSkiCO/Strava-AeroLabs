@@ -13,7 +13,7 @@ A tool for [Strava](https://www.strava.com/) users to calculate relative headwin
 * [Dreamhost](https://www.dreamhost.com/) - DNS Hosting
 * [Weather Underground API](https://api.wunderground.com/weather/api/) - Live local weather
 * [Google Maps API](https://developers.google.com/maps/) - Segment mapping
-
+* [MySQL 5.7](https://www.mysql.com/) - User Database
 
 ## Version
 
