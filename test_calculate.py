@@ -42,16 +42,16 @@ class TestCalculate(unittest.TestCase):
 
         # Check north bearing in all quadrants x == 0
         test_bearing_nw_quad = calculate.bearing(45.0, -90.0, 46.0, -90.0)
-        self.assertTrue(self, test_bearing_nw_quad == 0, msg='calculate.bearing(NW Quad) not returning north')
+        self.assertTrue(test_bearing_nw_quad == 0, msg='calculate.bearing(NW Quad) not returning north')
 
         test_bearing_ne_quad = calculate.bearing(45.0, 90.0, 46.0, 90.0)
-        self.assertTrue(self, test_bearing_ne_quad == 0, msg='calculate.bearing(NE Quad) not returning north')
+        self.assertTrue(test_bearing_ne_quad == 0, msg='calculate.bearing(NE Quad) not returning north')
 
         test_bearing_sw_quad = calculate.bearing(-45.0, -90.0, -44.0, -90.0)
-        self.assertTrue(self, test_bearing_sw_quad == 0, msg='calculate.bearing(SW Quad) not returning north')
+        self.assertTrue(test_bearing_sw_quad == 0, msg='calculate.bearing(SW Quad) not returning north')
 
         test_bearing_se_quad = calculate.bearing(-45.0, 90.0, -44.0, 90.0)
-        self.assertTrue(self, test_bearing_se_quad == 0, msg='calculate.bearing(SE Quad) not returning north')
+        self.assertTrue(test_bearing_se_quad == 0, msg='calculate.bearing(SE Quad) not returning north')
 
         # Check northeast bearing 0 < x < 90
         # Check east bearing x == 90
