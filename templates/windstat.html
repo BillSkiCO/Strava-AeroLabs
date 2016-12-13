@@ -16,9 +16,9 @@
   ga('send', 'pageview');
 
 </script>
-
 {% block content %}
 <link rel ="stylesheet" type="text/css" href="{{url_for('static', filename='css/windstat.css')}}">
+    <!-- Yup.. inline css ¯\_(ツ)_/¯. Figure out how to route template variables into CSS for arrow rotation -->
 <style type="text/css">
         .wind_arrow{
         -ms-transform: rotate({{wind_dir_deg - 45 + 180}}deg); /* IE 9 */
