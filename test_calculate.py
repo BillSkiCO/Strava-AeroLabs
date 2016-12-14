@@ -5,7 +5,7 @@
     test_calculate.py: Run unit tests for calculate.py
 
     Initial Implementation: 12/13/2016 [William Golembieski]
-    Last Modification: 12/13/2016 [William Golembieski]
+    Last Modification: 12/14/2016 [William Golembieski]
 
 """
 
@@ -41,25 +41,172 @@ class TestCalculate(unittest.TestCase):
     # Longs: +- 180
 
         # Check north bearing in all quadrants x == 0
-        test_bearing_nw_quad = calculate.bearing(45.0, -90.0, 46.0, -90.0)
-        self.assertTrue(test_bearing_nw_quad == 0, msg='calculate.bearing(NW Quad) not returning north')
+        test_bearing_nw_quad_is_north = calculate.bearing(45.0, -90.0, 46.0, -90.0)
+        self.assertTrue(test_bearing_nw_quad_is_north == 0,
+                        msg='calculate.bearing(NW Quad) not returning north: '
+                        + str(test_bearing_nw_quad_is_north))
 
-        test_bearing_ne_quad = calculate.bearing(45.0, 90.0, 46.0, 90.0)
-        self.assertTrue(test_bearing_ne_quad == 0, msg='calculate.bearing(NE Quad) not returning north')
+        test_bearing_ne_quad_is_north = calculate.bearing(45.0, 90.0, 46.0, 90.0)
+        self.assertTrue(test_bearing_ne_quad_is_north == 0,
+                        msg='calculate.bearing(NE Quad) not returning north: '
+                        + str(test_bearing_ne_quad_is_north))
 
-        test_bearing_sw_quad = calculate.bearing(-45.0, -90.0, -44.0, -90.0)
-        self.assertTrue(test_bearing_sw_quad == 0, msg='calculate.bearing(SW Quad) not returning north')
+        test_bearing_sw_quad_is_north = calculate.bearing(-45.0, -90.0, -44.0, -90.0)
+        self.assertTrue(test_bearing_sw_quad_is_north == 0,
+                        msg='calculate.bearing(SW Quad) not returning north: '
+                        + str(test_bearing_sw_quad_is_north))
 
-        test_bearing_se_quad = calculate.bearing(-45.0, 90.0, -44.0, 90.0)
-        self.assertTrue(test_bearing_se_quad == 0, msg='calculate.bearing(SE Quad) not returning north')
+        test_bearing_se_quad_is_north = calculate.bearing(-45.0, 90.0, -44.0, 90.0)
+        self.assertTrue(test_bearing_se_quad_is_north == 0,
+                        msg='calculate.bearing(SE Quad) not returning north: '
+                        + str(test_bearing_se_quad_is_north))
 
         # Check northeast bearing 0 < x < 90
-        # Check east bearing x == 90
+        test_bearing_nw_quad_is_northeast = calculate.bearing(45.0, -90.0, 46.0, -89.0)
+        self.assertTrue(0 < test_bearing_nw_quad_is_northeast < 90,
+                        msg='calculate.bearing(NW Quad) not returning northeast: '
+                        + str(test_bearing_nw_quad_is_northeast))
+
+        test_bearing_ne_quad_is_northeast = calculate.bearing(45.0, 90.0, 46.0, 91.0)
+        self.assertTrue(0 < test_bearing_ne_quad_is_northeast < 90,
+                        msg='calculate.bearing(NE Quad) not returning northeast: '
+                        + str(test_bearing_ne_quad_is_northeast))
+
+        test_bearing_sw_quad_is_northeast = calculate.bearing(-45.0, -90.0, -44.0, -89.0)
+        self.assertTrue(0 < test_bearing_sw_quad_is_northeast < 90,
+                        msg='calculate.bearing(SW Quad) not returning northeast: '
+                        + str(test_bearing_sw_quad_is_northeast))
+
+        test_bearing_se_quad_is_northeast = calculate.bearing(-45.0, 90.0, -44.0, 91.0)
+        self.assertTrue(0 < test_bearing_se_quad_is_northeast < 90,
+                        msg='calculate.bearing(SE Quad) not returning northeast: '
+                        + str(test_bearing_se_quad_is_northeast))
+
+        # Check east bearing x about == 90
+        test_bearing_nw_quad_is_east = calculate.bearing(45.0, -90.0, 45.0, -89.0)
+        self.assertTrue(89 < test_bearing_nw_quad_is_east < 91,
+                        msg='calculate.bearing(NW Quad) not returning east: '
+                        + str(test_bearing_nw_quad_is_east))
+
+        test_bearing_ne_quad_is_east = calculate.bearing(45.0, 90.0, 45.0, 91.0)
+        self.assertTrue(89 < test_bearing_ne_quad_is_east < 91,
+                        msg='calculate.bearing(NE Quad) not returning east: '
+                        + str(test_bearing_ne_quad_is_east))
+
+        test_bearing_sw_quad_is_east = calculate.bearing(-45.0, -90.0, -45.0, -89.0)
+        self.assertTrue(89 < test_bearing_sw_quad_is_east < 91,
+                        msg='calculate.bearing(SW Quad) not returning east: '
+                        + str(test_bearing_sw_quad_is_east))
+
+        test_bearing_se_quad_is_east = calculate.bearing(-45.0, 90.0, -45.0, 91.0)
+        self.assertTrue(89 < test_bearing_se_quad_is_east < 91,
+                        msg='calculate.bearing(SE Quad) not returning east: '
+                        + str(test_bearing_se_quad_is_east))
+
         # Check southeast bearing 90 < x < 180
+        test_bearing_nw_quad_is_southeast = calculate.bearing(45.0, -90.0, 44.0, -89.0)
+        self.assertTrue(90 < test_bearing_nw_quad_is_southeast < 180,
+                        msg='calculate.bearing(NW Quad) not returning southeast: '
+                        + str(test_bearing_nw_quad_is_southeast))
+
+        test_bearing_ne_quad_is_southeast = calculate.bearing(45.0, 90.0, 44.0, 91.0)
+        self.assertTrue(90 < test_bearing_ne_quad_is_southeast < 180,
+                        msg='calculate.bearing(NE Quad) not returning southeast: '
+                        + str(test_bearing_ne_quad_is_southeast))
+
+        test_bearing_sw_quad_is_southeast = calculate.bearing(-45.0, -90.0, -46.0, -89.0)
+        self.assertTrue(90 < test_bearing_sw_quad_is_southeast < 180,
+                        msg='calculate.bearing(SW Quad) not returning southeast: '
+                        + str(test_bearing_sw_quad_is_southeast))
+
+        test_bearing_se_quad_is_southeast = calculate.bearing(-45.0, 90.0, -46.0, 91.0)
+        self.assertTrue(90 < test_bearing_se_quad_is_southeast < 180,
+                        msg='calculate.bearing(SE Quad) not returning southeast: '
+                        + str(test_bearing_se_quad_is_southeast))
+
         # Check south bearing x == 180
+        test_bearing_nw_quad_is_south = calculate.bearing(45.0, -90.0, 44.0, -90.0)
+        self.assertTrue(179 < test_bearing_nw_quad_is_south < 181,
+                        msg='calculate.bearing(NW Quad) not returning south: '
+                        + str(test_bearing_nw_quad_is_south))
+
+        test_bearing_ne_quad_is_south = calculate.bearing(45.0, 90.0, 44.0, 90.0)
+        self.assertTrue(179 < test_bearing_ne_quad_is_south < 181,
+                        msg='calculate.bearing(NE Quad) not returning south: '
+                        + str(test_bearing_ne_quad_is_south))
+
+        test_bearing_sw_quad_is_south = calculate.bearing(-45.0, -90.0, -46.0, -90.0)
+        self.assertTrue(179 < test_bearing_sw_quad_is_south < 181,
+                        msg='calculate.bearing(SW Quad) not returning south: '
+                        + str(test_bearing_sw_quad_is_south))
+
+        test_bearing_se_quad_is_north = calculate.bearing(-45.0, 90.0, -46.0, 90.0)
+        self.assertTrue(179 < test_bearing_se_quad_is_north < 181,
+                        msg='calculate.bearing(SE Quad) not returning south: '
+                        + str(test_bearing_se_quad_is_north))
+
         # Check southwest bearing 180 < x < 270
-        # Check west bearing x == 270
+        test_bearing_nw_quad_is_southwest = calculate.bearing(45.0, -90.0, 44.0, -91.0)
+        self.assertTrue(180 < test_bearing_nw_quad_is_southwest < 270,
+                        msg='calculate.bearing(NW Quad) not returning southwest: '
+                        + str(test_bearing_nw_quad_is_southwest))
+
+        test_bearing_ne_quad_is_southwest = calculate.bearing(45.0, 90.0, 44.0, 89.0)
+        self.assertTrue(180 < test_bearing_ne_quad_is_southwest < 270,
+                        msg='calculate.bearing(NE Quad) not returning southwest: '
+                        + str(test_bearing_ne_quad_is_southwest))
+
+        test_bearing_sw_quad_is_southwest = calculate.bearing(-45.0, -90.0, -46.0, -91.0)
+        self.assertTrue(180 < test_bearing_sw_quad_is_southwest < 270,
+                        msg='calculate.bearing(SW Quad) not returning southwest: '
+                        + str(test_bearing_sw_quad_is_southwest))
+
+        test_bearing_se_quad_is_southwest = calculate.bearing(-45.0, 90.0, -46.0, 89.0)
+        self.assertTrue(180 < test_bearing_se_quad_is_southwest < 270,
+                        msg='calculate.bearing(SE Quad) not returning southwest: '
+                        + str(test_bearing_se_quad_is_southwest))
+
+        # Check west bearing about == 270
+        test_bearing_nw_quad_is_west = calculate.bearing(45.0, -90.0, 45.0, -91.0)
+        self.assertTrue(269 < test_bearing_nw_quad_is_west < 271,
+                        msg='calculate.bearing(NW Quad) not returning west: '
+                        + str(test_bearing_nw_quad_is_west))
+
+        test_bearing_ne_quad_is_west = calculate.bearing(45.0, 90.0, 45.0, 89.0)
+        self.assertTrue(269 < test_bearing_ne_quad_is_west < 271,
+                        msg='calculate.bearing(NE Quad) not returning west: '
+                        + str(test_bearing_ne_quad_is_west))
+
+        test_bearing_sw_quad_is_west = calculate.bearing(-45.0, -90.0, -45.0, -91.0)
+        self.assertTrue(269 < test_bearing_sw_quad_is_west < 271,
+                        msg='calculate.bearing(SW Quad) not returning west: '
+                        + str(test_bearing_sw_quad_is_west))
+
+        test_bearing_se_quad_is_west = calculate.bearing(-45.0, 90.0, -45.0, 89.0)
+        self.assertTrue(269 < test_bearing_se_quad_is_west < 271,
+                        msg='calculate.bearing(SE Quad) not returning west: '
+                        + str(test_bearing_se_quad_is_west))
+
         # Check northwest bearing 270 < x < 360
+        test_bearing_nw_quad_is_northwest = calculate.bearing(45.0, -90.0, 46.0, -91.0)
+        self.assertTrue(270 < test_bearing_nw_quad_is_northwest < 360,
+                        msg='calculate.bearing(NW Quad) not returning northwest: '
+                        + str(test_bearing_nw_quad_is_northwest))
+
+        test_bearing_ne_quad_is_northwest = calculate.bearing(45.0, 90.0, 46.0, 89.0)
+        self.assertTrue(270 < test_bearing_ne_quad_is_northwest < 360,
+                        msg='calculate.bearing(NE Quad) not returning northwest: '
+                        + str(test_bearing_ne_quad_is_northwest))
+
+        test_bearing_sw_quad_is_northwest = calculate.bearing(-45.0, -90.0, -44.0, -91.0)
+        self.assertTrue(270 < test_bearing_sw_quad_is_northwest < 360,
+                        msg='calculate.bearing(SW Quad) not returning northwest: '
+                        + str(test_bearing_sw_quad_is_northwest))
+
+        test_bearing_se_quad_is_northwest = calculate.bearing(-45.0, 90.0, -44.0, 89.0)
+        self.assertTrue(270 < test_bearing_se_quad_is_northwest < 360,
+                        msg='calculate.bearing(SE Quad) not returning northwest: '
+                            + str(test_bearing_se_quad_is_northwest))
 
 
 if __name__ == '__main__':
